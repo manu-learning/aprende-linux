@@ -89,6 +89,39 @@
   1) Xlib
   2) X Toolkit
   #+END_QUOTE
+* (DM) Display Managers + Session Managers
+  - Son Clientes que usan las *Client libraries*
+  - Administran la visualización/selección/movimiento/cambio de tamaño y decoración de las ventanas
+
+  #+BEGIN_QUOTE
+  Algunos ejemplos serían
+
+  1) GDM
+  2) KDM
+  3) LightDM
+  4) LXDM
+  #+END_QUOTE
+* (DE) Desktop Environment - Entorno de Escritorio
+   #+BEGIN_QUOTE
+   Los más populares en Linux son
+
+   1) KDE
+      - su nombre surje de otro Entorno de Escritorio llamado CDE, Common Desktop Environment
+      - en KDE 4 se integra la tecnología Plasma, que integra los Workspaces
+   2) GNOME Shell
+   3) Xfce
+      - basado en la biblioteca *GTK+ 2*
+   4) LXDE (Lightweight X11 Desktop Environment)
+   5) Cinnamon
+      - basado en GNOME Shell 2
+      - desarrollado por Linux Mint
+      - usa el Gestor de Ventanas *Mutter* como *Compositor*
+   6) MATE
+      - basado en GNOME Shell 2
+
+   Los Entornos de Escritorio *Cinnamon* y *MATE* nacieron porque GNOME Shell 3 no satisfacía las necesidades de los usuarios de linux,
+   son una bifurcación del proyecto original de GNOME Shell 2
+   #+END_QUOTE
 * X11 - X Window System
 ** Conceptos
    - Es un *protocolo de sistema de ventanas*
