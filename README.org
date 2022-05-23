@@ -122,6 +122,75 @@
    Los Entornos de Escritorio *Cinnamon* y *MATE* nacieron porque GNOME Shell 3 no satisfacía las necesidades de los usuarios de linux,
    son una bifurcación del proyecto original de GNOME Shell 2
    #+END_QUOTE
+* (WM) X Window Managers - Gestores de Ventanas
+** Compositor - Gestores de Composición de Ventanas
+   - Es un componente de la (GUI) interfáz gráfica
+   - Dibuja las ventanas ó bien sólo sus bordes
+   - Procesa la salida en un buffer para manipularla previo a mostrarla en la salida de la pantalla
+   - Características visuales que ofrecen
+     1) transparencia
+     2) degradado (Fading)
+     3) girado (contorting)
+     4) escalamiento
+     5) mezclado (shuffling)
+     6) fusionado (bending)
+
+  #+BEGIN_QUOTE
+  Los más conocidos son
+
+  1) Compiz
+  2) KWin (por default en KDE Plasma 5)
+  3) Mutter (por default en GNOME 3)
+  4) Xfwm (por default en Xfce)
+  #+END_QUOTE
+** Tiling Window Managers
+   - Permiten dividir varios paneles en una pantalla (que se pueden redimensionar/ajustar el tamaño)
+   - Aprovecha todo el espacio de la pantalla, evitar espacios vacíos que pueden ser aprovechados para mostrar información de las aplicaciones
+   - Muchas las aplicaciones implementan este concepto para dividir la ventana en paneles (Ej. Emacs, Vscode, ...)
+
+   #+BEGIN_QUOTE
+   Los más conocidos son
+
+   1) i3
+   2) xmonad (desarrollado en Haskell)
+   #+END_QUOTE
+** Stacking Window Managers
+   - Permite solapar ventanas de aplicaciones entre si
+   - Se suele sugerir más un *Tiling WM* ya que éste segundo aprovecha todo el espacio de la pantalla entre las ventanas de las aplicaciones
+
+   #+BEGIN_QUOTE
+   Los más conocidos son
+
+   1) Openbox
+   3) awesome
+   4) Fluxbox
+   2) JWM
+   #+END_QUOTE
+* TODO Shell
+   - Es una interfaz que expone servicios del Sistema Operativo
+* TODO Graphical Shells
+   - Es una (GUI) *Graphical User Interface* para manipular programas con gráficos y ofrece operaciones para abrir/cerrar/mover/redimensionar ventanas
+   - Pueden estar incluidas en un (DE) *Entorno de Escritorio*
+   - Luego de instalar se puede agregar ó no un (DE) *Entorno de Escritorio* (/por tanto podemos ir cambiar el Entorno de Escritorio/)
+
+   #+BEGIN_COMMENT
+   - Es un (WM) *X Window Manager* con un conjunto de programas que tienen la funcionalidad de instalar aplicaciones, gestionar ventanas y otras
+   - Se instala encima de un *Window System* (Ej. x11, X Window System) 
+   #+END_COMMENT
+
+   #+BEGIN_QUOTE
+   Las más populares en Linux son
+
+   - Unity (para GNOME Desktop, desarrollado por Canonical Ltd para Ubuntu 10)
+   - GNOME Shell
+   - KDE Plasma
+   - Maynard
+   #+END_QUOTE
+
+   #+BEGIN_QUOTE
+   Unity NO es una colección de aplicaciones, como si lo son GNOME, KDE, Xfce, etc.. 
+   #+END_QUOTE
+** TODO Wayland
 * X11 - X Window System
 ** Conceptos
    - Es un *protocolo de sistema de ventanas*
