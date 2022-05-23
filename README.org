@@ -68,6 +68,27 @@
 
     @enduml
   #+END_SRC
+* Display Servers
+  - Reciben y atienden peticiones de los clientes
+  - Recibe y atiende peticiones de visualización, entrada de texto y movimiento de mouse
+  - Ofrecen servicios a los periféricos de entrada (teclado/mouse) y de salida (pantalla)
+
+  #+BEGIN_QUOTE
+  Algunos ejemplos serían
+
+  1) X.Org Server
+  2) Cygwin/X (para windows)
+  #+END_QUOTE
+* Client Libraries
+  - Usadas para consumir los servicios de los servidores y mostrarlos por pantalla
+  - Utilizadas para realizar peticiones al Servidor X
+
+  #+BEGIN_QUOTE
+  Algunos ejemplos serían
+
+  1) Xlib
+  2) X Toolkit
+  #+END_QUOTE
 * X11 - X Window System
 ** Conceptos
    - Es un *protocolo de sistema de ventanas*
