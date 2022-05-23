@@ -1,0 +1,127 @@
+#+STARTUP: inlineimages
+* Intro
+  #+BEGIN_SRC plantuml :file img/diagrama-x-system.png :exports results
+    @startuml
+    !theme blueprint
+
+    '--------------------------- Componentes --------------------------
+    component "X-Clients"{
+    component "Emacs" as emacs <<X Application>>
+    component "xterm" as terminal <<X Application>>
+
+    component "KDE, GNOME, Xfce" <<DE, Desktop Environment>> as desktop
+    component "Compiz, Mutter" as wm <<WM, Window Manager>>
+    component "GDM, LightDM, KDM" as dm <<DM, Display Managers>>
+    component "KDE Plasma, GNOME Shell" as shell <<Graphical Shell>>
+    }
+
+    component "Xlib" as clientlib <<Client Library>>
+    component "GTK+" as gtkplus
+
+    component "Display Server" as displayserver{
+    component "X11, X.Org Server" as servidor <<X Server>> 
+
+    note as N1
+    ,* Reciben y atienden peticiones de los Cliente-X
+    ,* Las peticiones son de visualización,
+    entrada de texto y movimiento de mouse
+    end note
+    }
+
+    component "Linux Kernel" as kernel <<OS Kernel>>
+    component Hardware as hw
+
+    '--------------------------- Relaciones --------------------------
+    emacs -down- gtkplus
+    terminal -down- gtkplus
+    wm -down- gtkplus
+    desktop -down- gtkplus
+    dm -down- gtkplus
+    gtkplus -down- clientlib
+    clientlib <-down-> servidor : X Protocol
+    shell -down- gtkplus
+
+    kernel <-up-> servidor
+    hw <-up-> kernel
+
+    '--------------------------- Notas --------------------------
+
+    note left of gtkplus
+    ,* La capa **GDK**, implementa wrappers
+    para interactuar con **Xlib** (//portabilidad//)
+    ,* La capa **GTK** ofrece toolkit+widgets 
+    para crear aplicaciones con interfaz gráfica
+    (//depende de GDK//)
+    end note
+
+    note left of clientlib
+    ,* Es una API a bajo nivel
+    ,* Las aplicaciones la requieren
+    para interactuar con el Servidor-X
+    end note
+
+    note bottom of shell
+    ,* Por defecto los (DE) ya incluyen una **shell**
+    ,* Se puede instalar una **shell** y luego elegir 
+    otro **Entorno de Escritorio**
+    end note
+
+    @enduml
+  #+END_SRC
+* X11 - X Window System
+** Conceptos
+   - Es un *protocolo de sistema de ventanas*
+   - Administra los periféricos de entrada (mouse/teclado) y salida (la pantalla)
+   - Usa el modelo de *Cliente-Servidor* (modelo de comunicación)
+   - Permite visualizar ventanas y otros componentes gráficos de la interfaz 
+     - Localmente (software cliente y servidor en la misma maquina)
+     - Remotamente (a través de la red, el software gráfico se ejecuta en una máquina remota y se visualiza en un escritorio)
+** Servidor X
+   - Conocido como *X.Org Server*
+   - Se considera servidor porque *proporciona servicios* de entrada/salida a una aplicación es decir un *Cliente X*
+   - Recibe y atiende peticiones de visualización, entrada de texto y movimiento de mouse
+   - A través de un *puerto* recibe las peticiones (puntos de acceso a una dirección IP)
+   - Se ejecuta en un terminal *Cliente ligero* con pantalla+teclado+mouse
+** Cliente X
+   - Se considera cliente porque *consume los servicios* de entrada/salida del *Servidor X*
+   - Se conecta a un *Servidor X* y le envía peticiones de visualización usando el *protocolo X* a través de la biblioteca *Xlib*
+   - Aplica el *protocolo X* para delegar las tareas de interacción hombre-máquina (HMI) al *Servidor X*
+   - Aplicación de Software (juego, procesador de texto, calculadora, ..)
+   - Puede ser una computadora local/remota
+** Xlib
+   - Biblioteca que usan los Clientes (GTK+, Qt, ...) para comunicarse con el *X.Org Server*
+** Diagramas
+*** Esquema de capas GUI
+** Referencias
+*** Referencias Oficiales
+    1. [[https://es.frwiki.wiki/wiki/X_Window_System][X window system (frwiki.wiki)]]
+* IPC - Inter Process Communication
+** Conceptos
+   - (IPC) hace referencia a los mecanismos que existen para *Comunicación entre Procesos* ("inter" significa "entre")
+   - Necesario para que un proceso *X.Org Server* y cualquier proceso *x-client* se puedan comunicar
+     (porque entre procesos no se conocen, a menos que se implemente un mecanismo IPC)
+** Sockets
+   - Es el mecanismo (IPC) más utilizado 
+   - Provee una (API) *Application Programming Interface* para la comunicación con (TCP/IP) *Transmission Control Protocol/Internet Protocol*
+** Referencias
+*** Referencias Oficiales
+    1. [[https://www.ibm.com/docs/es/aix/7.2?topic=protocol-tcpip-name-resolution][Resolución de nombres TCP/IP (ibm.com)]]
+* Referencias
+** Referencias Oficiales
+   1. [[https://www.wikiwand.com/en/GTK][GTK (wikiwand.com)]]
+   2. [[https://docs.oracle.com/cd/E19683-01/816-0279/serverintro-91783/index.html][Introduction to the Solaris X Server (docs.oracle.com)]]
+   3. [[https://en.wikipedia.org/wiki/Comparison_of_X_window_managers][Comparison of X window managers (wikipedia.org)]]
+   4. [[http://openbox.org/wiki/Main_Page][Openbox (openbox.org)]]
+** Referencias Extraoficiales
+   1. [[https://blog.actorsfit.com/a?ID=01750-9e8ca4c7-6f5d-495a-bac8-8abe4e6389b6][The relationship between X-based GNOME, GTK, GDK, Xlib, Glib (blog.actorsfit.com)]]
+   2. [[https://l3net.wordpress.com/2013/03/17/a-memory-comparison-of-light-linux-desktops/][A memory comparison of light Linux desktops (l3net.wordpress.com)]]
+   3. [[https://www.emezeta.com/articulos/openbox-personalizar-escritorio-linux][Openbox personalizar escritorio linx (emezeta.com)]]
+   4. [[https://www.deviantart.com/search?q=openbox][Openbox devianart (devianart.com)]]
+** Comunidad Linux
+   1. [[http://www.espaciolinux.com/foros/entorno-grafico-f39/][EspacioLinux.com]]
+** Pendientes a Revisar
+   1. [[https://www.gtk.org/docs/getting-started/hello-world][GTK Getting Started (gtk.org)]]
+   2. [[https://blog.gtk.org/page/4/][GTK Dev Blog (blog.gtk.org)]]
+   3. [[https://speakerdeck.com/wuman/gtk-plus-programming-using-vala?slide=15][GTK+ Programming using Vala (speakerdeck.com)]]
+   3. [[https://conpilar.kryptonsolid.com/como-usar-xdmcp-para-el-acceso-a-escritorio-remoto-en-linux/][Como usar XDMCP para acceso remoto (conpilar.kryptonsolid.com)]]
+   4. [[https://blog.sombex.com/2018/01/install-multiple-display-manager-and-switch-display-manager-debian.html][Install Multiple Display Manager and switch between display manager on debian (blog.sombex.com)]]
