@@ -69,7 +69,7 @@
     @enduml
   #+END_SRC
 
-  [[file:img/linux-arquitectura.png][Arquitectura Linux]]
+  [[file:img/linux-arquitectura.png]]
 * Display Servers
   - Reciben y atienden peticiones de los clientes
   - Recibe y atiende peticiones de visualización, entrada de texto y movimiento de mouse
